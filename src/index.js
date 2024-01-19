@@ -8,9 +8,10 @@ import { GlobalStyle } from 'components/GlobalStyles';
 const root = document.getElementById('root');
 
 createRoot(root).render(
+  
   <Provider store={store}>
-    <BrowserRouter>
-      <GlobalStyle/>
+    <GlobalStyle />
+    <BrowserRouter basename="/car-rental">
       <App />
     </BrowserRouter>
   </Provider>
