@@ -9,7 +9,7 @@ const root = document.getElementById('root');
 
 createRoot(root).render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename='/car-rental'>
       <GlobalStyle/>
       <App />
     </BrowserRouter>
