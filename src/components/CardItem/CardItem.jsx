@@ -1,19 +1,33 @@
+import { useState } from 'react';
+
+import { Modal } from 'components/Modal/Modal'
 import {
     Button,
     ItemWrapper,
     InfoWrapper,
 } from './CardItem.styled'
 
-export const CardItem = ({ car: { year, make, model, img } }) => {
+export const CardItem = ({ car }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleMoreClick = () => {
+        setIsModalOpen(true);
+    }
+    
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+
     return(
     <ItemWrapper>
-        <img src={img} alt={`${make} ${model}`} />
+        <img src={car.img} alt={`${car.make} ${car.model}`} />
         <InfoWrapper>
-            <p>{make}</p>
-            <p>{model}</p>
-            <p>{year}</p>
+            <p>{car.make}</p>
+            <p>{car.model}</p>
+            <p>{car.year}</p>
         </InfoWrapper>
-        <Button type='button'>Learn more</Button>
+            <Button onClick={handleMoreClick}>Learn more</Button>
+            {isModalOpen && <Modal isOpen={handleMoreClick} onClose={handleModalClose} car={car}/>}
         </ItemWrapper>
     )
 }

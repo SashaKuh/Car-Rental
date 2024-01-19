@@ -1,6 +1,6 @@
 import { lazy, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Layout } from './Layout/Layout';
 import { getCars } from '../redux/cars/carsOperations';
@@ -11,10 +11,12 @@ const FavoritesPage = lazy(() => import('../pages/FavoritesPage/FavoritesPage'))
 
 export const App = () => {
   const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.cars.currentPage);
 
-  useEffect(() => {
-    dispatch(getCars())
-  }, [dispatch])
+   useEffect(() => {
+  dispatch(getCars());
+}, [dispatch, currentPage]);
+
 
   return (
     <>

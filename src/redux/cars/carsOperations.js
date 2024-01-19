@@ -5,15 +5,17 @@ axios.defaults.baseURL = 'https://65a954a7219bfa3718690b12.mockapi.io';
 
 export const getCars = createAsyncThunk(
     'cars/getCars',
-    async (_, thunckAPI) => {
+    async (_, thunkAPI) => {
         try {
-            const { data } = await axios.get('/api/car-info');
+            const currentPage = thunkAPI.getState().cars.currentPage;
+            const perPage = thunkAPI.getState().cars.displayedCars;
+
+            const { data } = await axios.get(`/api/car-info?page=${currentPage}&limit=${perPage}`);
             
-            return data
+            return data;
         } catch (error) {
-            return thunckAPI.rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue(error.message);
         }
     }
 );
 
-// Пагінація сторінок !!!!!!!
