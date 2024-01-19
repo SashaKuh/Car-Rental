@@ -1,23 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getCars } from './carsOperations';
-import { handleCars, handlePandingCars, handleCarsError } from './handlers';
+import {
+    handleCars,
+    handleCarsError,
+    handlePandingCars
+} from './handlers.js'
 
 const carsSlice = createSlice({
     name: 'cars',
     initialState: {
         cars: [],
-        isLoading: false,
-        isError: null,
+        displayedCars: 12,
+        currentPage: 1,
     },
-    extraReducers: builder => {
+    isLoading: false,
+    isError: null,
+    extraReducers: (builder) => {
         builder
             .addCase(getCars.fulfilled, handleCars)
             .addCase(getCars.pending, handlePandingCars)
-            .addCase(getCars.rejected, handleCarsError)
-    }
+            .addCase(getCars.rejected, handleCarsError);
+    },
+    reducers: {
+        setCurrentPage: (state, action) => {
+            state.currentPage = action.payload;
+        },
+    },
 });
 
-export const carsReducer = carsSlice.reducer
-
-// Filter car
+export const { setCurrentPage } = carsSlice.actions;
+export const carsReducer = carsSlice.reducer;

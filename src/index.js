@@ -13,5 +13,5 @@ createRoot(root).render(
       <GlobalStyle/>
       <App />
     </BrowserRouter>
-  </Provider>,
+  </Provider>
 );
