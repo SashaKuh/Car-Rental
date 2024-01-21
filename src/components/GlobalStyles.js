@@ -41,13 +41,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   transition: 250ms linear;
   overflow: auto;
-      outline: red solid 1px;
 }
 .container {
    width: 320px;
   margin: 0 auto;
   /* padding: 0 16px; */
-  outline: 1px solid red;
   
   
   @media screen and (min-width: 768px) {
