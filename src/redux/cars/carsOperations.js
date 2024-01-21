@@ -19,3 +19,14 @@ export const getCars = createAsyncThunk(
     }
 );
 
+export const filterCars = createAsyncThunk(
+    'cars/filterCars',
+    async (brand, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`/api/car-info/catalog?make=${brand}`);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);

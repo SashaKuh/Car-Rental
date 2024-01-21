@@ -95,6 +95,12 @@ export const Rental = styled.p`
   margin-bottom: 8px;
 `;
 
+export const Img = styled.img`
+max-width: 100%;
+ height: 100%; 
+ object-fit: cover
+`;
+
 export const Condition = styled.p`
   font-family: Montserrat;
   color: #363535;

@@ -1,6 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { HomepageContainer, HeroSection, FeatureSection, Feature } from './HomePage.styled';
+
+import {
+  HomepageContainer,
+  HeroSection,
+  InfoItems,
+  TrackerInfoContainer,
+  SubTitle,
+  CardLink
+} from './HomePage.styled';
 
 const HomePage = () => {
   return (
@@ -11,23 +18,25 @@ const HomePage = () => {
       <HeroSection>
         <h1>Rent Your Dream Car</h1>
         <p>Explore our collection of premium cars for rent.</p>
-        <Link to="/catalog">View Cars</Link>
+        <CardLink to="/catalog">View Cars</CardLink>
       </HeroSection>
 
-      <FeatureSection>
-        <Feature>
-          <h2>Easy Booking</h2>
-          <p>Book your car with just a few clicks. Simple and convenient.</p>
-        </Feature>
-        <Feature>
-          <h2>Wide Selection</h2>
-          <p>Choose from a diverse range of top-notch vehicles.</p>
-        </Feature>
-        <Feature>
-          <h2>Flexible Plans</h2>
-          <p>Customize your rental plan to suit your needs.</p>
-        </Feature>
-      </FeatureSection>
+      <TrackerInfoContainer>
+          <SubTitle>Why drink water</SubTitle>
+          <ul>
+            <InfoItems>Supply of nutrients to all organs</InfoItems>
+            <InfoItems>Providing oxygen to the lungs</InfoItems>
+            <InfoItems>Maintaining the work of the heart</InfoItems>
+            <InfoItems>Release of processed substances</InfoItems>
+            <InfoItems>
+              Ensuring the stabiInfoItemsty of the internal environment
+            </InfoItems>
+            <InfoItems>Maintaining within the normal temperature</InfoItems>
+            <InfoItems>
+              Maintaining an immune system capable of resisting disease
+            </InfoItems>
+          </ul>
+        </TrackerInfoContainer>
 
       
     </HomepageContainer>

@@ -1,12 +1,14 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardList } from '../../components/CardList/CardList';
 import { setCurrentPage } from '../../redux/cars/carsSlice';
+import { LoadMoarWrapper, BtnLoad } from './CatalogPage.styled';
+import { Filter } from 'components/Filter/Filter';
 
 const CatalogPage = () => {
     const dispatch = useDispatch();
     const currentPage = useSelector((state) => state.cars.currentPage);
-    const cars = useSelector((state) => state.cars.cars);
-    const isLoading = useSelector((state) => state.cars.isLoading);
+    const hasMoreData = useSelector((state) => state.cars.hasMoreData);
 
     const handleLoadMore = () => {
         dispatch(setCurrentPage(currentPage + 1));
@@ -14,10 +16,11 @@ const CatalogPage = () => {
 
     return (
         <div className='container'>
+            <Filter />
             <CardList />
-            {cars.length > 0 && !isLoading && (
-                <button onClick={handleLoadMore}>Load More</button>
-            )}
+            <LoadMoarWrapper>
+                {hasMoreData && <BtnLoad onClick={handleLoadMore}>Load More</BtnLoad>}
+            </LoadMoarWrapper>
         </div>
     );
 };

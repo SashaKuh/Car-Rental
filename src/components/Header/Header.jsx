@@ -1,8 +1,8 @@
-import { HeaderWrapper, NavLinkBtn, NavWrapper } from './Header.styled';
+import { HeaderWrapper, NavLinkBtn, NavWrapper, HeaderContainer } from './Header.styled';
 
 export const Header = () => {
     return (
-        <div className='container'>
+        <HeaderContainer>
             <HeaderWrapper>
                 <NavWrapper>
                     <NavLinkBtn to="/">Home</NavLinkBtn>
@@ -10,6 +10,6 @@ export const Header = () => {
                     <NavLinkBtn to="/favorites">Favorites</NavLinkBtn>
                 </NavWrapper>
             </HeaderWrapper>
-        </div>
+        </HeaderContainer>
     )
 };

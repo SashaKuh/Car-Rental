@@ -1,15 +1,17 @@
 import { CardItem } from 'components/CardItem/CardItem';
-import { useCars } from 'hooks/useCars';
-import { ListWrap } from './CardList.styled';
+import { ListWrapper } from './CardList.styled';
+import { useSelector } from 'react-redux';
+import { selectCars } from '../../redux/selectors';
 
 export const CardList = () => {
-    const { cars } = useCars();
+    const cars = useSelector(selectCars);
 
     return (
-        <ListWrap>
-            {cars.map(car => (
-                <CardItem key={car.id} car={car} />
-            ))}
-        </ListWrap>
+        <ListWrapper>
+            {Array.isArray(cars) && cars.map(car => (
+            
+            <CardItem key={car.id} car={car} />
+        ))}
+    </ListWrapper>
     );
 };
