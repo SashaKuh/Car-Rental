@@ -13,6 +13,7 @@ export const colourStylesCar = {
     height: '48px',
     display: 'flex',
     alignContent: 'center',
+    zIndex: '100'
   }),
   valueContainer: styles => ({
     ...styles,
@@ -91,9 +92,11 @@ export const colourStylesPrice = {
 };
 
 export const Form = styled.form`
-  padding: 42px 162px 50px 162px;
+  justify-content: center;
   display: flex;
   gap: 18px;
+  padding-top:50px;
+  padding-bottom: 50px
 `;
 export const Span = styled.span`
   padding-bottom: 8px;
