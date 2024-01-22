@@ -112,7 +112,7 @@ export const Modal = ({ isOpen, onClose, car }) => {
         </Condition>
       </FlexWrap>
 
-        <RentalButton to="tel:+1234567890">Rental Car</RentalButton>
+        <RentalButton to="tel:+380730000000">Rental Car</RentalButton>
         <BtnClose onClick={onClose} width={12} height={12}>
           X
         </BtnClose>
