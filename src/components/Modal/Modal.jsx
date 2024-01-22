@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-
 import {
   Accessories,
   AccessoriesDetail,
@@ -15,95 +14,110 @@ import {
   Rental,
   RentalButton,
   Title,
-    Value,
+  Value,
   Img
 } from './Modal.styled';
 
 export const Modal = ({ isOpen, onClose, car }) => {
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      onClose();
+    };
 
-    useEffect(() => {
-        const handleKeyPress = e => {
-            onClose();
-        };
+    document.addEventListener('keydown', handleKeyPress);
 
-        document.addEventListener('keydown', handleKeyPress);
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [onClose]);
 
-        return () => {
-            document.removeEventListener('keydown', handleKeyPress);
-        };
-    }, [onClose]);
-    
-    
-    useEffect(() => {
-        const body = document.body;
-        if (isOpen) {
-            body.style.overflow = 'hidden';
-        } else {
-            body.style.overflow = 'auto';
-        }
-        return () => {
-            body.style.overflow = 'auto';
-        };
-    }, [isOpen]);
-    
-    
+  useEffect(() => {
+    const body = document.body;
+    if (isOpen) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'auto';
+    }
+    return () => {
+      body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
-    const rentalConditionsString = car.rentalConditions || '';
+  const renderConditions = () => {
+    const rentalConditionsArray = car.rentalConditions?.split('\n') || [];
+    return rentalConditionsArray.map((condition, index) => {
+      const isMinimumAgeCondition = condition.toLowerCase().includes('minimum age');
+      const [label, value] = condition.split(':').map((item) => item.trim());
 
-    const rentalConditionsArray = rentalConditionsString.split('\n');
+      return (
+        <Condition key={index}>
+          {isMinimumAgeCondition ? (
+            <>
+              {label}:&nbsp;
+              <Value>{value}</Value>
+            </>
+          ) : (
+            <>
+              {label}:&nbsp;
+              <Value>{value}</Value>
+            </>
+          )}
+        </Condition>
+      );
+    });
+  };
 
-    return (
-        <Backdrop onClick={onClose}>
-            <ModalWindow onClick={e => e.stopPropagation()}>
-                <ImageContainer>
-                    <Img
-                        src={car.img}
-                        alt={car.make}
-                        style={{ maxWidth: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                </ImageContainer>
+  return (
+    <Backdrop onClick={onClose}>
+      <ModalWindow onClick={(e) => e.stopPropagation()}>
+        <ImageContainer>
+          <Img
+            src={car.img}
+            alt={car.make}
+            style={{ maxWidth: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </ImageContainer>
 
-                <Title>
-                    {`${car.make}`}
-                    <Model> {`${car.model}`}, </Model>
-                    {`${car.year}`}
-                </Title>
+        <Title>
+          {`${car.make}`}
+          <Model> {`${car.model}`}, </Model>
+          {`${car.year}`}
+        </Title>
 
-                <Info>
-                    {`${car.address.split(',').slice(-2).join(', ')} | ${car.rentalCompany
-                        } | ${car.type} | ${car.id} | ${car.accessories[0]}`}
-                </Info>
+        <Info>
+          {`${car.address.split(',').slice(-2).join(', ')} | ${car.rentalCompany
+            } | ${car.type} | ${car.id} | ${car.accessories[0]}`}
+        </Info>
 
-                <Description>{`${car.description}`}</Description>
-                <Accessories>Accessories and functionalities:</Accessories>
+        <Description>{`${car.description}`}</Description>
+        <Accessories>Accessories and functionalities:</Accessories>
 
-                <AccessoriesDetail>
-                    {car.accessories.map((accessory, index) => (
-                        <p key={index}>{accessory} |  </p>
-                    ))}
-                </AccessoriesDetail>
-                <Rental>Rental Conditions: </Rental>
-                <FlexWrap>
-                    {rentalConditionsArray.map((condition, index) => (
-                        <Condition key={index}>{condition}</Condition>
-                    ))}
-                    <Condition>
-                        {' '}
-                        Millage:&nbsp;{' '}
-                        <Value>
-                            {car.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                        </Value>{' '}
-                    </Condition>
+        <AccessoriesDetail>
+          {car.accessories.map((accessory, index) => (
+            <p key={index}>{accessory} | </p>
+          ))}
+        </AccessoriesDetail>
+        <Rental>Rental Conditions: </Rental>
+      <FlexWrap>
+        {renderConditions()}
+        <Condition>
+          {' '}
+          Millage:&nbsp;{' '}
+          <Value>
+            {car.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </Value>{' '}
+        </Condition>
+        <Condition>
+          Price:&nbsp; <Value> {`${car.rentalPrice}`} </Value>
+        </Condition>
+      </FlexWrap>
 
-                    <Condition>
-                        Price:&nbsp; <Value> {`${car.rentalPrice}`} </Value>
-                    </Condition>
-                </FlexWrap>
-                <RentalButton to="tel:+1234567890">Rental Car</RentalButton>
-                <BtnClose onClick={onClose} width={12} height={12}>
-                    X
-                </BtnClose>
-            </ModalWindow>
-        </Backdrop>
-    );
+        <RentalButton to="tel:+1234567890">Rental Car</RentalButton>
+        <BtnClose onClick={onClose} width={12} height={12}>
+          X
+        </BtnClose>
+      </ModalWindow>
+    </Backdrop>
+  );
 };
+
