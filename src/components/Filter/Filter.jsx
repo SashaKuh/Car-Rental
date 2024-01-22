@@ -1,56 +1,70 @@
-import { DropdownBrand } from 'components/Dropdown/Brand/Brand';
-import { useEffect, useState } from 'react';
-import {DropdownPrice} from 'components/Dropdown/Price/Price';
-import {RangeFilter} from 'components/RangeFilter/RangeFilter';
-import { AllFilter, SearchBtn } from './Filter.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedBrand } from '../../redux/cars/carsFilterSlice';
-import { filterCars } from '../../redux/cars/carsOperations';
-import { updateCars } from '../../redux/cars/carsSlice';
-import jsonData from '../../data/macke.json';
+import Select from 'react-select';
+import makes from '../../data/macke.json';
+import { price } from '../../data/price';
+import {
+  Form,
+  Span,
+  colourStylesCar,
+  colourStylesPrice,
+  InputFrom,
+  InputTo,
+  Button,
+} from './Filter.styled';
+import { useDispatch } from 'react-redux';
+import { filtersAdverts } from '../../redux/cars/carsFilterSlice';
 
 export const Filter = () => {
-  const [brandOptions] = useState([]);
+  const optionsBrands = makes.map(make => ({ value: make, label: make }));
+  const optionsPrice = price().map(price => ({
+    value: price,
+    label: `To ${price}$`,
+  }));
 
-  const selectedBrand = useSelector(state => state.filter.selectedBrand);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const brands = jsonData.map(brand => ({ value: brand, label: brand }));
-      console.log(brands);
-    };
-    fetchData();
-  }, []);
-
-const handleBrandSelect = async brand => {
-  if (brand) {
-    dispatch(setSelectedBrand(brand));
-    try {
-      const filteredCars = await filterCars(brand);
-      dispatch(updateCars(filteredCars));
-    } catch (error) {
-      console.error('Error fetching filtered cars data:', error);
-    }
-  }
-};
-
-const handleApplyFilters = async () => {
-  try {
-    const filteredCars = await filterCars(selectedBrand);
-    dispatch(updateCars(filteredCars));
-    dispatch(setSelectedBrand(''));
-  } catch (error) {
-    console.error('Помилка при фільтрації даних про автомобілі:', error);
-  }
-};
+  const handleSubmit = event => {
+    event.preventDefault();
+    dispatch(
+      filtersAdverts({
+        make: event.currentTarget.elements.make.value,
+        price: event.currentTarget.elements.price.value,
+        mileageFrom: event.currentTarget.elements.from.value,
+        mileageTo: event.currentTarget.elements.to.value,
+      })
+    );
+  };
 
   return (
-    <AllFilter>
-      <DropdownBrand options={brandOptions} onSelect={handleBrandSelect} />
-      <DropdownPrice />
-      <RangeFilter/>
-      <SearchBtn onClick={handleApplyFilters}>Search</SearchBtn>
-    </AllFilter>
+    <Form onSubmit={handleSubmit}>
+      <label>
+        <Span>Car brand</Span>
+        <Select
+          name="make"
+          components={{
+            IndicatorSeparator: null,
+          }}
+          placeholder="Enter the text"
+          options={optionsBrands}
+          styles={colourStylesCar}
+        />
+      </label>
+      <label>
+        <Span>Price/ 1 hour</Span>
+        <Select
+          name="price"
+          components={{ IndicatorSeparator: null }}
+          placeholder="To $"
+          options={optionsPrice}
+          styles={colourStylesPrice}
+        />
+      </label>
+      <label>
+        <Span>Сar mileage / km</Span>
+        <div>
+          <InputFrom placeholder="From" name="from" />
+          <InputTo placeholder="To" name="to" />
+        </div>
+      </label>
+      <Button type="submit">Search</Button>
+    </Form>
   );
 };

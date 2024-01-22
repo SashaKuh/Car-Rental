@@ -11,7 +11,6 @@ const carsSlice = createSlice({
     name: 'cars',
     initialState: {
         cars: [],
-        filteredCars: [],
         displayedCars: 12,
         currentPage: 1,
         isLoading: false,
@@ -25,11 +24,9 @@ const carsSlice = createSlice({
         updateCars: (state, action) => {
     const data = action.payload;
 
-    // Перевірка, чи є коректні дані для розпакування
     if (data && Array.isArray(data)) {
       state.cars = data;
     } else {
-      // Якщо дані некоректні, можливо, вам слід виконати інші дії або вивести помилку
       console.error('Invalid data received:', data);
     }
   },

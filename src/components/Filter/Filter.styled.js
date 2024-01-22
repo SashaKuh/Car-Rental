@@ -1,38 +1,153 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
-export const AllFilter = styled.div`
-  gap: 18px;
+export const colourStylesCar = {
+  control: styles => ({
+    ...styles,
+    backgroundColor: '#F7F7FB',
+    borderRadius: '14px',
+    borderColor: 'transparent',
+    color: '#121417',
+    fontSize: '18px',
+    padding: '14px 18px',
+    width: '224px',
+    height: '48px',
+    display: 'flex',
+    alignContent: 'center',
+  }),
+  valueContainer: styles => ({
+    ...styles,
+    margin: '0px',
+    padding: '0px',
+  }),
+  input: styles => ({
+    ...styles,
+    margin: '0px',
+    padding: '0px',
+  }),
+  placeholder: styles => ({
+    ...styles,
+    color: '#121417',
+    margin: '0px',
+  }),
+  dropdownIndicator: styles => ({
+    ...styles,
+    color: '#121417',
+    padding: '0px',
+  }),
+  menuList: styles => ({
+    ...styles,
+    color: 'rgba(18, 20, 23, 0.20)',
+    borderRadius: '14px',
+  }),
+  menu: styles => ({
+    ...styles,
+    borderRadius: '14px',
+  }),
+};
+
+export const colourStylesPrice = {
+  control: styles => ({
+    ...styles,
+    backgroundColor: '#F7F7FB',
+    borderRadius: '14px',
+    borderColor: 'transparent',
+    color: '#121417',
+    fontSize: '18px',
+    padding: '14px 18px',
+    width: '125px',
+    height: '48px',
+    display: 'flex',
+    alignContent: 'center',
+  }),
+  valueContainer: styles => ({
+    ...styles,
+    margin: '0px',
+    padding: '0px',
+  }),
+  input: styles => ({
+    ...styles,
+    margin: '0px',
+    padding: '0px',
+  }),
+  placeholder: styles => ({
+    ...styles,
+    color: '#121417',
+    margin: '0px',
+  }),
+  dropdownIndicator: styles => ({
+    ...styles,
+    color: '#121417',
+    padding: '0px',
+  }),
+  menuList: styles => ({
+    ...styles,
+    color: 'rgba(18, 20, 23, 0.20)',
+    borderRadius: '14px',
+  }),
+  menu: styles => ({
+    ...styles,
+    borderRadius: '14px',
+  }),
+};
+
+export const Form = styled.form`
+  padding: 42px 162px 50px 162px;
   display: flex;
-  max-width: 1440px;
-  padding: 0 115px;
-  padding-top: 30px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 64px;
+  gap: 18px;
+`;
+export const Span = styled.span`
+  padding-bottom: 8px;
+  color: #8a8a89;
+  font-size: 14px;
+  line-height: 1.28;
+  font-weight: 500;
+`;
+export const InputFrom = styled.input`
+  width: 160px;
+  height: 48px;
+  padding: 14px 24px;
+  border-color: transparent;
+  border-radius: 14px 0px 0px 14px;
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+  background: #f7f7fb;
+  color: #121417;
+  font-size: 18px;
+
+  &::placeholder {
+    color: #121417;
+  }
 `;
 
-export const SearchBtn = styled.button`
+export const InputTo = styled.input`
+  width: 160px;
+  height: 48px;
+  padding: 14px 24px;
+  border-color: transparent;
+  border-radius: 0px 14px 14px 0px;
+  background: #f7f7fb;
+  color: #121417;
+  font-size: 18px;
+
+  &::placeholder {
+    color: #121417;
+  }
+`;
+
+export const Button = styled.button`
   width: 136px;
   height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 14px 44px;
-  align-self: flex-end;
-  flex-shrink: 0;
-  border: none;
   border-radius: 12px;
-  background-color: #3470ff;
-  
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.4;
-  text-decoration: none;
+  background: #3470ff;
   color: #fff;
-  
-  cursor: pointer;
+  border: transparent;
+  margin-top: auto;
 
   &:hover {
-    background-color: #0b44cd;
+    background: #0b44cd;
+  }
+
+  &:focus {
+    background: #0b44cd;
   }
 `;
