@@ -45,7 +45,7 @@ export const CardItem = ({ car }) => {
     
 
     return (
-        <>
+        <li>
             <Thumb>
                 <Heart carId={car.id} onToggle={() => handleHeart(car.id)} isLiked={isLiked} />
                 <ItemWrapper>
@@ -73,6 +73,6 @@ export const CardItem = ({ car }) => {
                     />}
                 </ItemWrapper>
             </Thumb>
-        </>
+      </li>
     )
 };

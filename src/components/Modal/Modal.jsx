@@ -1,22 +1,24 @@
 import { useEffect } from 'react';
 import {
-  Accessories,
-  AccessoriesDetail,
-  Backdrop,
-  BtnClose,
-  Condition,
-  Description,
-  FlexWrap,
-  ImageContainer,
-  Info,
-  ModalWindow,
-  Model,
-  Rental,
-  RentalButton,
-  Title,
-  Value,
-  Img
+    Accessories,
+    AccessoriesDetail,
+    Backdrop,
+    Condition,
+    Description,
+    FlexWrap,
+    ImageContainer,
+    Info,
+    ModalWindow,
+    Model,
+    Rental,
+    RentalButton,
+    Title,
+    Value,
+    Img,
+    CloseSVG
 } from './Modal.styled';
+
+import closeModalSVG from '../../common/close.svg';
 
 export const Modal = ({ isOpen, onClose, car }) => {
     useEffect(() => {
@@ -49,6 +51,8 @@ export const Modal = ({ isOpen, onClose, car }) => {
             const isMinimumAgeCondition = condition.toLowerCase().includes('minimum age');
             const [label, value] = condition.split(':').map((item) => item.trim());
 
+            
+
             return (
                 <Condition key={index}>
                     {isMinimumAgeCondition ? (
@@ -70,6 +74,7 @@ export const Modal = ({ isOpen, onClose, car }) => {
     return (
         <Backdrop onClick={onClose}>
             <ModalWindow onClick={(e) => e.stopPropagation()}>
+                <CloseSVG onClick={onClose} src={closeModalSVG} />
                 <ImageContainer>
                     <Img
                         src={car.img}
@@ -113,9 +118,8 @@ export const Modal = ({ isOpen, onClose, car }) => {
                 </FlexWrap>
 
                 <RentalButton to="tel:+380730000000">Rental Car</RentalButton>
-                <BtnClose onClick={onClose} width={12} height={12}>
-                    X
-                </BtnClose>
+                    
+                
             </ModalWindow>
         </Backdrop>
     );

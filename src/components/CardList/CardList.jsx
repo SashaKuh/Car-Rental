@@ -21,6 +21,7 @@ export const CardList = () => {
 
     return (
         <ListWrapper>
+            
             {filteredCars.map(car => (
                 <CardItem key={car.id} car={car} />
             ))}

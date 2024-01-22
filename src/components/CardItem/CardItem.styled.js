@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ReactSVG } from 'react-svg';
 
-export const Thumb = styled.ul`
+export const Thumb = styled.div`
   width: 274px;
   height: 446px;
   position: relative;
@@ -20,28 +20,27 @@ export const FavoriteSVG = styled(ReactSVG)`
 `;
 
 export const Button = styled.button`
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+        box-sizing: border-box;
     padding: 12px 99px;
-    background-color: var(--primaryBlue);
     font-size: 14px;
     font-weight: 600;
-    line-height: 1.43; 
-    border: none; 
+    line-height: 1.4;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
     border-radius: 12px;
-    color: var(--primaryWhite);
+    max-width: 274px;
+    display: flex;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(52, 112, 255);
+    transition: box-shadow 0.3s ease 0s;
     cursor: pointer;
-    transition: box-shadow 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98);
-
-    &:hover,
-    &:focus {
-        background-color: var(--secondaryBlue);
-    }
 `;
 
-export const ItemWrapper = styled.li`
+export const ItemWrapper = styled.div`
     flex-basis: calc((100% - 3 * 29px) / 4);
 
     & img {

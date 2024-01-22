@@ -9,91 +9,101 @@ export const calculateLineHeight = (fontSize, lineHeight) => {
 };
 
 export const GlobalStyle = createGlobalStyle`
-${modernNormalize}
- :root {
-    --primaryWhite: #FFFFFF; //
+  ${modernNormalize}
+
+  :root {
+    --primaryWhite: #FFFFFF;
     --primaryBlack: #2F2F2F;
-    --primaryBlue: #3470FF; //
-    --secondaryGrey: #F3F3F2; //
+    --primaryBlue: #3470FF;
+    --secondaryGrey: #F3F3F2;
     --secondaryDarkGrey: #D7E3FF;
     --secondaryRed: #EF5050;
     --secondaryOrange: #FF9D43;
-    --secondaryBlue: #0B44CD; //
+    --secondaryBlue: #0B44CD;
 
-
-    --fontSizesTiny: 12px;
-    --fontSizesSmall: 16px;
-    --fontSizesMedium: 18px;
-    --fontSizesLarge: 26px;
+    --fontSizesTiny: 1rem;
+    --fontSizesSmall: 1.25rem;
+    --fontSizesMedium: 1.5rem;
+    --fontSizesLarge: 2.5rem;
 
     --animationDuration: 0.3s;
-    --animationCubicBezier: 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98);
-
-   
+    --animationCubicBezier: cubic-bezier(0.7, 0.98, 0.86, 0.98);
   }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  body {
+    margin: 0;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: 250ms linear;
-  overflow: auto;
-}
-.container {
-   width: 320px;
-  margin: 0 auto;
-  /* padding: 0 16px; */
-  
-  
-  @media screen and (min-width: 768px) {
-    width: 768px;
-    /* padding: 0 128px; */
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1440px;
-    /* padding: 0 128px; */
-  }
-}
-
-
-.static-background {
+  font-weight: 400;
+  font-style: normal;
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
- 
-}
+  height: 100vh;
+  margin: 0;
+  color: #121417;
+  }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  .container {
+    width: 320px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1440px;
+    padding: 0px 115px;
 
-a {
+    @media screen and (min-width: 768px) {
+      width: 768px;
+    }
+
+    @media screen and (min-width: 1440px) {
+      width: 1440px;
+    }
+  }
+
+  .static-background {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }
+
+  a {
     text-decoration: none;
-}
+  }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-button {
-  cursor: pointer;
-}
+  button {
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    outline: 0;
+    padding: 0;
+  }
 
-p {
-  margin: 0;
-}
+  p {
+    margin: 0;
+  }
 
-h1, h2, h3, h4 {
-margin: 0
-}
+  h1, h2, h3, h4 {
+    margin: 0;
+  }
 
+  img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
 
   .ReactModalPortal {

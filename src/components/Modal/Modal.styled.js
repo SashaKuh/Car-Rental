@@ -1,5 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -154,14 +155,14 @@ export const RentalButton = styled(NavLink)`
   }
 `;
 
-export const BtnClose = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  background-color: transparent;
+export const CloseSVG = styled(ReactSVG)`
   position: absolute;
   top: 16px;
   right: 16px;
+  border: transparent;
+  background: transparent;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
