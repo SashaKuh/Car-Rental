@@ -4,11 +4,13 @@ import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist
 
 import { carsReducer } from './cars/carsSlice';
 import { carFilterReducer } from './cars/carsFilterSlice'
+import {favoritesReducer} from './cars/favoriteSclice'
 
 const store = configureStore({
     reducer: {
         cars: carsReducer,
         filter: carFilterReducer,
+        favorites: favoritesReducer,
     },
     middleware: getDefaultMiddleware => [
         ...getDefaultMiddleware({

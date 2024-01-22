@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ReactSVG } from 'react-svg';
 
-export const Thumb = styled.div`
+export const Thumb = styled.ul`
   width: 274px;
   height: 446px;
   position: relative;

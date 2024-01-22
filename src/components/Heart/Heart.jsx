@@ -1,11 +1,15 @@
-import heartImage from '../../common/normal.png';
-import { ButtonLike } from './Heart.styled';
+import normal from '../../common/favorite.svg';
+import active from '../../common/favorite-active.svg';
+import { FavoriteSVG } from './Heart.styled';
 
-export const Heart = () => {
+export const Heart = ({ carId, onToggle, isLiked }) => {
+    const toggleLike = () => {
+        onToggle && onToggle(carId, !isLiked);
+    };
 
     return (
-        <ButtonLike >
-            <img src={heartImage} width="18px" height="18px" alt="" />
-        </ButtonLike>
+        <>
+            <FavoriteSVG onClick={toggleLike} src={!isLiked ? normal : active} />
+        </>
     );
 };
